@@ -1,5 +1,10 @@
+<div align="center">
+  <img src="uet-logo.png" alt="UET Logo" width="150"/>
+</div>
+
 # Project "Helios" ☀️
 **An Intelligent Combined Heat & Power (CHP) Microgrid Based on a Stirling Engine Thermal Cascade**
+**Developed by UET (University Engineering Team)**
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![Hardware](https://img.shields.io/badge/hardware-IoT-blue)
@@ -49,12 +54,12 @@ I take full responsibility for the mechanical miscalculations as Project Lead. I
 * `📁 fintech_and_business/` — Financial models, Tokenomics whitepaper, Pitch deck.
 * `📁 docs/` — Deep-dive engineering and architectural analysis.
 
-## 👥 The Team
+## 👥 The Team (UET - University Engineering Team)
 This project was brought to life by a cross-functional, international team spanning the USA and Poland:
 
 **Core Leadership & Engineering Division (Washington, D.C.)**
-* **Mykyta Skyba** – Project Lead & Lead Systems Architect. *(Vision, final technical interfaces, thermodynamic analysis)*
-* **David Matsievich** – Lead Electrical & Integration Engineer. *(Power electronics chain, integration, safety)*
+* **Mykyta Skyba** – Project Lead, Lead Systems Architect & Integration Lead. *(Full integration of the system, thermodynamic analysis, and project vision)*
+* **David Matsievich** – Assistant Project Lead & MT Design Engineer. *(Assistant in project management, responsible for MT engine installation and structural design)*
 
 **Digital Twin & Cloud Division (Poland)**
 * **Andrii Serdiuk** – IT Manager & DevOps Lead. *(Cloud infrastructure, CI/CD, deployment automation)*
