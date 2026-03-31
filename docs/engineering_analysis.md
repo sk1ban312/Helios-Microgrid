@@ -8,44 +8,54 @@ As the Project Lead, I (Mykyta Skyba) take full responsibility for the miscalcul
 
 ---
 
-## 2. Electrical Power Output: Expectations vs. Reality
-Our initial goal was to generate enough continuous power to steadily charge a 10,000mAh power bank via an MT3608 boost converter (stepped up to 5V). 
+## 2. Thermodynamic Efficiency & Energy Loss Analysis
+To understand the true efficiency of the system, we must compare the potential thermal energy of the fuel against the final electrical output.
 
-| Metric | Expected Output | Actual Output (HT Prototype) |
-| :--- | :--- | :--- |
-| **Voltage (V)** | 5.0 V | 4.0 V |
-| **Current (A)** | 0.01 A (10 mA) | 0.002 A (2 mA) |
-| **Power (W)** | ~50 mW | ~8 mW |
+**The Fuel Input (Thermal Power):**
+* **Fuel Source:** Denatured Alcohol (Ethanol).
+* **Burn Rate:** 20 ml consumed over a 15-minute (900 seconds) run.
+* **Density of Ethanol:** ~0.789 g/ml $\rightarrow$ Mass = 15.78 g (0.01578 kg).
+* **Lower Heating Value (LHV):** ~26.8 MJ/kg.
+* **Total Thermal Energy:** $0.01578 \text{ kg} \times 26,800,000 \text{ J/kg} \approx \textbf{422,900 Joules}$.
+* **Average Thermal Power Input:** $422,900 \text{ J} / 900 \text{ s} \approx \textbf{470 Watts}$.
 
-**Conclusion on Power:** The only engine that produced measurable, real electrical output was the High-Temperature (HT) Stirling engine prototype. However, at **8mW**, the output is essentially parasitic and barely sufficient to register on standard multimeters, let alone power a functional grid.
+**The Electrical Output (HT Prototype):**
+* **Measured Output:** 4.0 V at 0.002 A.
+* **Electrical Power:** $\textbf{0.008 Watts (8 mW)}$.
 
----
+**System Efficiency ($\eta$):**
+$$ \eta = \frac{P_{out}}{P_{in}} = \frac{0.008 \text{ W}}{470 \text{ W}} \times 100\% \approx \textbf{0.0017\%} $$
 
-## 3. The Mechanical Bottleneck: RPM, Torque, and Gear Ratios
-The core reason for the low electrical output lies in the mismatch between the mechanical characteristics of a hobby-grade Stirling engine and the requirements of standard DC motors.
-
-### 3.1 The RPM Deficit
-Standard Type-130 hobby DC motors act as generators when driven mechanically. However, to produce a stable 3V–5V, they typically require a rotational speed of **~3000 RPM**. 
-* The HT Stirling engine operated at roughly **100 RPM lower** than my absolute maximum theoretical calculations. 
-* The baseline speed was simply too slow to induce a meaningful electromagnetic field in the DC motor coils.
-
-### 3.2 The 1:5 Gear Ratio Failure
-To compensate for the low RPM, we attempted to use a mechanical advantage: a larger driving wheel connected to a smaller pulley on the DC motor, creating a **1:5 gear ratio**.
-* **Theory:** If the engine spins at 100 RPM, the motor shaft should spin at 500 RPM.
-* **Reality (The Torque Problem):** Stirling engines of this scale produce incredibly low torque. The moment we attached the belt for the 1:5 ratio, the mechanical impedance (friction of the belt, magnetic resistance of the DC motor's magnets) completely overcame the engine's torque. The engine stalled. 
-
-### 3.3 MT Engine Structural Unreliability
-The Medium-Temperature (MT) engine, designed to run off the captured waste heat, suffered from structural instability. The internal friction of its moving parts was too high relative to the low thermal energy it received, resulting in unreliable continuous motion and zero net electrical generation.
+*Conclusion:* The system dissipates nearly 99.998% of its energy as uncaptured heat, mechanical friction, and thermal radiation. The HT engine, while functional, acts mostly as a parasitic load rather than a viable generator.
 
 ---
 
-## 4. Thermodynamics & The TEG Temperature Delta ($\Delta T$)
-To capture the final stage of waste heat, we mounted Low-Temperature Thermoelectric Generators (TEGs) to the sides of a **custom-machined aluminum heat transfer block**.
+## 3. The Mechanical Bottleneck: MT Engine & Gear Ratio Failure
+While the HT engine produced a tiny trickle of power, the Medium-Temperature (MT) engine completely failed to drive the DC motor. The math reveals exactly why:
 
-TEGs operate on the **Seebeck effect**, which generates voltage based strictly on the temperature difference ($\Delta T$) between the hot side and the cold side of the ceramic module.
-* **The Hot Side:** The custom aluminum block successfully conducted heat from the HT radiators to the TEGs.
-* **The Cold Side (The Failure):** We utilized small, passive aluminum heatsinks to cool the outer side of the TEGs.
-* **The Result:** The small heatsinks were completely inadequate for dissipating the heat. They quickly reached thermal equilibrium with the hot side. As $\Delta T$ approached zero, the voltage output of the TEGs dropped to near zero. A much larger, potentially active (water-cooled or fan-cooled) system was required.
+**The Kinematic Setup:**
+* MT Engine Flywheel Radius ($R_{MT}$) = **5 cm**
+* DC Motor Pulley Radius ($R_{DC}$) = **1 cm**
+* **Gear Ratio:** 1:5 (Motor shaft spins 5 times for every 1 MT revolution).
+* **MT Engine Unloaded Speed:** **~100 RPM**.
+
+**1. The RPM Deficit:**
+With a 1:5 ratio, an unloaded MT engine at 100 RPM would spin the DC motor at **500 RPM**. However, standard Type-130 DC motors require **~3000 RPM** to overcome internal resistance and generate a stable 3V-5V. Even theoretically, we were operating at 1/6th of the required speed.
+
+**2. The Torque ($\tau$) Collapse:**
+In gear systems, speed increases at the direct expense of torque: 
+$$ \tau_{DC} = \frac{\tau_{MT}}{5} $$
+Stirling engines at this scale produce extremely low torque. By dividing this already minuscule torque by 5, the rotational force applied to the DC motor shaft dropped to near zero. The magnetic "cogging" force of the DC motor's permanent magnets and the friction of the drive belt were far greater than $\tau_{DC}$. As a result, attaching the belt instantly stalled the MT engine.
+
+---
+
+## 4. Conclusion & Forward Engineering
+As an Electrical Engineer, this project was a profound learning experience. It taught me a humbling truth: **Mechanical engineering and thermodynamics are incredibly unforgiving.** While our electrical logic, sensor communication, and cloud pipelines worked perfectly, the physical mechanical execution was our bottleneck. 
+
+If I were to design "Helios V2.0", the entire approach would change:
+1. **Complete Custom Engine Design:** Instead of relying on off-the-shelf hobby engines, I would machine the Stirling engines from scratch. Understanding the deep mechanics of piston friction, displacement volumes, and heat transfer is mandatory for true efficiency.
+2. **Custom PCB Integration:** I would replace the breadboards and generic modules with a custom-designed printed circuit board (PCB) to handle the ESP32 logic, step-up converters, and power management in one streamlined, low-resistance hardware package.
+3. **Optimized Thermal Design:** The system would feature actively cooled TEGs and perfectly insulated heat pathways to minimize the massive thermal losses calculated above.
 
 ---
 
