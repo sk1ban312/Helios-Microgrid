@@ -2,8 +2,28 @@
 **Project "Helios" — Combined Heat & Power (CHP) Microgrid**
 
 <div align="center">
-  <img src="prototype-photo.jpg" alt="Helios Physical Prototype" width="800"/>
-  <p><i>Fig 0. The Helios CHP Microgrid physical prototype.</i></p>
+  <table>
+    <tr>
+      <td align="center">
+        <img src="photo1.jpg" width="400" alt="Overall System"/>
+        <br><i>Fig 0.1: Full Helios System Setup</i>
+      </td>
+      <td align="center">
+        <img src="photo2.jpg" width="400" alt="HT Engine"/>
+        <br><i>Fig 0.2: HT Engine & Aluminum Block</i>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <img src="photo3.jpg" width="400" alt="Sensors & Wiring"/>
+        <br><i>Fig 0.3: ESP32 Sensor Hub & Wiring</i>
+      </td>
+      <td align="center">
+        <video src="demo.mp4" width="400" controls="controls" muted="muted"></video>
+        <br><i>Fig 0.4: Live Operation (Video Demo)</i>
+      </td>
+    </tr>
+  </table>
 </div>
 
 ## 1. Introduction & The Philosophy of "Engineering Honesty"
