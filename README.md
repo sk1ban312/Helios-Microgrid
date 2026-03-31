@@ -1,10 +1,13 @@
-<img src="uet-logo.png" align="right" width="140" alt="UET Logo"/>
-
 # Project "Helios" ☀️
-**An Intelligent Combined Heat & Power (CHP) Microgrid Based on a Stirling Engine Thermal Cascade**  
-**Developed by UET (University Engineering Team)**
 
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen) ![Hardware](https://img.shields.io/badge/hardware-IoT-blue) ![Data](https://img.shields.io/badge/data-Digital_Twin-orange) ![FinTech](https://img.shields.io/badge/fintech-Green_Energy_Token-purple)
+<a href="https://www.linkedin.com/in/uet-university-engineering-team-aa9005392" target="_blank">
+  <img src="uet-logo.png" align="right" width="140" alt="UET Logo"/>
+</a>
+
+**An Intelligent Combined Heat & Power (CHP) Microgrid Based on a Stirling Engine Thermal Cascade**  
+**Developed by [UET (University Engineering Team)](https://www.linkedin.com/in/uet-university-engineering-team-aa9005392)**
+
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](#) [![Hardware](https://img.shields.io/badge/hardware-IoT-blue)](#) [![Data](https://img.shields.io/badge/data-Digital_Twin-orange)](#) [![FinTech](https://img.shields.io/badge/fintech-Green_Energy_Token-purple)](#)
 
 ## 📖 Executive Summary
 Project **"Helios"** is a multidisciplinary engineering prototype designed to demonstrate a fully autonomous, instrumented Combined Heat and Power (CHP) microgrid. 
@@ -49,7 +52,7 @@ I take full responsibility for the mechanical miscalculations as Project Lead. I
 * **[📁 fintech_and_business/](./fintech_and_business/)** — Financial models, Tokenomics whitepaper, Pitch deck.
 * **[📁 docs/](./docs/)** — Deep-dive engineering and architectural analysis.
 
-## 👥 The Team (UET - University Engineering Team)
+## 👥 The Team ([UET - University Engineering Team](https://www.linkedin.com/in/uet-university-engineering-team-aa9005392))
 This project was brought to life by a cross-functional, international team spanning the USA and Poland:
 
 **Core Leadership & Engineering Division (Washington, D.C.)**
@@ -96,3 +99,6 @@ The physical prototype was constructed using off-the-shelf components for a tota
 **Hardware/Misc (~$80)**
 * 3D Printer Filament (1kg PLA) - $19.99
 * Additional structural materials & wiring
+
+---
+**Connect with us on LinkedIn: [UET (University Engineering Team)](https://www.linkedin.com/in/uet-university-engineering-team-aa9005392)**
