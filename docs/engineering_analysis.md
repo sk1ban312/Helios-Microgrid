@@ -4,7 +4,7 @@
 ## 1. Introduction & The Philosophy of "Engineering Honesty"
 The purpose of this document is to provide a transparent, deep-dive analysis of the physical performance of the Helios prototype. While the cyber-physical integration, 3D Digital Twin, thermodynamic heat transfer, and FinTech models performed flawlessly, the mechanical-to-electrical energy conversion fell significantly short of our theoretical expectations.
 
-As the Project Lead, I (Mykyta Skyba) take full responsibility for the miscalculations regarding the mechanical power output. This being my first major mechanical engineering project, the complexities of torque, mechanical impedance, and thermal dissipation were severely underestimated. This document details exactly *why* the physical generation was inefficient and what we learned.
+As the Project Lead, I (Mykyta Skyba) take full responsibility for the miscalculations regarding the mechanical power output. This being my first major mechanical engineering project, the complexities of torque, mechanical impedance, and thermal dissipation were severely underestimated. This document details exactly *why* the physical generation was inefficient, supported by mathematical physics, CAD models, and live IoT telemetry.
 
 ---
 
@@ -19,14 +19,14 @@ To understand the true efficiency of the system, we must compare the potential t
 * **Total Thermal Energy:** $0.01578 \text{ kg} \times 26,800,000 \text{ J/kg} \approx \textbf{422,900 Joules}$.
 * **Average Thermal Power Input:** $422,900 \text{ J} / 900 \text{ s} \approx \textbf{470 Watts}$.
 
-**The Electrical Output (HT Prototype):**
-* **Measured Output:** 4.0 V at 0.002 A.
-* **Electrical Power:** $\textbf{0.008 Watts (8 mW)}$.
+**The Electrical Output (HT Prototype Peak):**
+* **Measured Peak Output:** 4.42 V at 0.004 A.
+* **Peak Electrical Power:** $\textbf{0.0176 Watts (17.6 mW)}$.
 
 **System Efficiency ($\eta$):**
-$$ \eta = \frac{P_{out}}{P_{in}} = \frac{0.008 \text{ W}}{470 \text{ W}} \times 100\% \approx \textbf{0.0017\%} $$
+$$ \eta = \frac{P_{out}}{P_{in}} = \frac{0.0176 \text{ W}}{470 \text{ W}} \times 100\% \approx \textbf{0.0037\%} $$
 
-*Conclusion:* The system dissipates nearly 99.998% of its energy as uncaptured heat, mechanical friction, and thermal radiation. The HT engine, while functional, acts mostly as a parasitic load rather than a viable generator.
+*Conclusion:* The system dissipates nearly 99.996% of its energy as uncaptured heat, mechanical friction, and thermal radiation. The HT engine, while functional, acts mostly as a parasitic load rather than a viable macro-generator.
 
 ---
 
@@ -49,22 +49,55 @@ Stirling engines at this scale produce extremely low torque. By dividing this al
 
 ---
 
-## 4. Conclusion & Forward Engineering
-As an Electrical Engineer, this project was a profound learning experience. It taught me a humbling truth: **Mechanical engineering and thermodynamics are incredibly unforgiving.** While our electrical logic, sensor communication, and cloud pipelines worked perfectly, the physical mechanical execution was our bottleneck. 
+## 4. Thermodynamics & The TEG Temperature Delta ($\Delta T$)
+To capture the final stage of waste heat, we mounted Low-Temperature Thermoelectric Generators (TEGs) to the sides of a custom-machined aluminum heat transfer block.
+
+### 4.1 CAD Design (Autodesk Fusion 360)
+We designed the custom transfer block in Autodesk Fusion 360. The geometry was specifically engineered to sit on top of the HT engine's radiators, with the MT engine mounted on the top face, and the TEGs mounted on the lateral faces.
+
+<div align="center">
+  <img src="cad-model.png" alt="Fusion 360 CAD Model" width="700"/>
+  <p><i>Fig 1. Custom Aluminum Transfer Block modeled in Autodesk Fusion 360.</i></p>
+</div>
+
+### 4.2 Custom Thermal Simulation (Python FDM)
+Due to Autodesk Fusion 360's cloud computing paywalls for thermal simulations, we engineered a custom 2D Finite Difference Method (FDM) script in Python to model the heat distribution across our aluminum block.
+
+TEGs operate on the **Seebeck effect**, generating voltage based on the temperature difference ($\Delta T$).
+* **The Hot Side:** The bottom of the aluminum block successfully conducted heat (~120°C) from the HT engine.
+* **The Cold Side (The Failure):** We utilized small passive aluminum heatsinks to cool the outer side of the TEGs (~40°C). 
+
+<div align="center">
+  <img src="thermal-graph.png" alt="Python Thermal Simulation" width="700"/>
+  <p><i>Fig 2. 2D Thermal Gradient Simulation written in Python (Finite Difference Method).</i></p>
+</div>
+
+**The Result:** As the simulation and our physical tests proved, the small external heatsinks were completely inadequate. They quickly reached thermal equilibrium with the hot side. As $\Delta T$ approached zero, the voltage output of the TEGs dropped to near zero. A much larger, active cooling system (water or fan-cooled) was required.
+
+### 4.3 Live Telemetry (Firebase IoT Pipeline)
+During testing, our ESP32 and Arduino sensor hubs streamed live telemetry (RPM, Voltage, Current, and Temperature) to a Google Firebase realtime database, which powered our web dashboard. 
+
+To visualize the mechanical bottleneck, we analyzed a standard 15-minute fuel cycle (20ml of ethanol). The graph below reconstructs the peak telemetry data captured during the run:
+
+<div align="center">
+  <img src="telemetry-graph.png" alt="Firebase Telemetry Graph" width="700"/>
+  <p><i>Fig 3. Time-series reconstruction of a 15-minute system run based on Firebase peak telemetry.</i></p>
+</div>
+
+**Data Insights:**
+1. **HT Engine:** Spun rapidly (peaking at ~6100 RPM on the IR sensor) and generated a relatively stable **4.42V**. However, at 0.004A, the total power was only ~17.6 mW.
+2. **MT Engine:** The telemetry perfectly illustrates the torque failure. The RPM remained at **0** throughout the entire thermal cycle, confirming that the initial mechanical impedance of the DC motor could not be overcome. Consequently, it generated **0V**.
+3. **TEG Array:** Produced a peak of **0.17V** and 0.0002A (34 $\mu$W). The low voltage directly correlates with the lack of active cooling, confirming that thermal equilibrium destroyed the Seebeck effect.
+4. **Efficiency Gap:** While the theoretical Carnot potential of the system based on temperature deltas was **~5.47%**, the actual mechanical-to-electrical efficiency was **0.0037%**.
+
+---
+
+## 5. Conclusion & Forward Engineering
+As an Electrical Engineer, this project was a profound learning experience. It taught me a humbling truth: **Mechanical engineering and thermodynamics are incredibly unforgiving.** While our electrical logic, sensor communication, and cloud pipelines worked perfectly, the physical mechanical execution was our primary bottleneck. 
 
 If I were to design "Helios V2.0", the entire approach would change:
 1. **Complete Custom Engine Design:** Instead of relying on off-the-shelf hobby engines, I would machine the Stirling engines from scratch. Understanding the deep mechanics of piston friction, displacement volumes, and heat transfer is mandatory for true efficiency.
 2. **Custom PCB Integration:** I would replace the breadboards and generic modules with a custom-designed printed circuit board (PCB) to handle the ESP32 logic, step-up converters, and power management in one streamlined, low-resistance hardware package.
 3. **Optimized Thermal Design:** The system would feature actively cooled TEGs and perfectly insulated heat pathways to minimize the massive thermal losses calculated above.
-
----
-
-## 5. Project Lead's Conclusion & V2.0 Improvements
-The Helios project was a massive success in systems integration, IoT, data streaming, and FinTech modeling. However, physically, it served as a harsh but invaluable lesson in mechanical engineering constraints.
-
-**If we were to build Helios V2.0, the following physical changes are mandatory:**
-1. **Custom Low-Friction Alternators:** We cannot use off-the-shelf DC motors. We must design coreless axial flux generators with neodymium magnets that offer near-zero "cogging" torque and generate power at very low RPMs (100–300 RPM).
-2. **Active Cooling Loop:** The TEGs require a dedicated cold-water loop or significantly larger, high-surface-area finned heatsinks to maintain a high $\Delta T$.
-3. **High-Torque Engines:** Transitioning from alpha/beta kinematic Stirling engines to a Free-Piston Stirling Engine (FPSE) design equipped with a linear alternator would eliminate rotational friction entirely.
 
 *Authored by: Mykyta Skyba (Project Lead & Lead Systems Architect)*
