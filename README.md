@@ -56,19 +56,19 @@ I take full responsibility for the mechanical miscalculations as Project Lead. I
 This project was brought to life by a cross-functional, international team spanning the USA and Poland:
 
 **Core Leadership & Engineering Division (Washington, D.C.)**
-* **[Mykyta Skyba](ССЫЛКА_НА_ЛИНКЕДИН)** – Project Lead, Lead Systems Architect & Integration Lead. *(Full integration of the system, thermodynamic analysis, and project vision)*
-* **[David Matsievich](ССЫЛКА_НА_ЛИНКЕДИН)** – Assistant Project Lead & MT Design Engineer. *(Assistant in project management, responsible for MT engine installation and structural design)*
+* **[Mykyta Skyba](https://www.linkedin.com/in/mykyta-skyba-677521339/)** – Project Lead, Lead Systems Architect & Integration Lead. *(Full integration of the system, thermodynamic analysis, and project vision)*
+* **[David Matsievich](https://www.linkedin.com/in/david-matsievich-44ba97235/)** – Assistant Project Lead & MT Design Engineer. *(Assistant in project management, responsible for MT engine installation and structural design)*
 
 **Digital Twin & Cloud Division (Poland)**
-* **[Andrii Serdiuk](ССЫЛКА_НА_ЛИНКЕДИН)** – IT Manager & DevOps Lead. *(Cloud infrastructure, CI/CD, deployment automation)*
-* **[Marcel Marek](ССЫЛКА_НА_ЛИНКЕДИН)** – AI Specialist. *(Digital Twin integration)*
-* **[Szymon Pankiewicz](ССЫЛКА_НА_ЛИНКЕДИН)** – Marketing & Designer. *(Visual identity, branding, UI/UX)*
-* **[Michał Dąbrowski](ССЫЛКА_НА_ЛИНКЕДИН)** – Quality Assurance (QA). *(Functional testing, platform quality, documentation)*
+* **[Andrii Serdiuk](https://www.linkedin.com/in/andriiserdiukk/)** – IT Manager & DevOps Lead. *(Cloud infrastructure, CI/CD, deployment automation)*
+* **[Marcel Marek](https://www.linkedin.com/in/marcelmarek/)** – AI Specialist. *(Digital Twin integration)*
+* **[Szymon Pankiewicz](https://www.linkedin.com/in/szymon-pankiewicz/)** – Marketing & Designer. *(Visual identity, branding, UI/UX)*
+* **[Michał Dąbrowski](https://www.linkedin.com/in/michal-dabrowski03/)** – Quality Assurance (QA). *(Functional testing, platform quality, documentation)*
 
 **Finance, Market & Policy Analysis Division (Washington, D.C.)**
-* **[Simon Rakhlin](ССЫЛКА_НА_ЛИНКЕДИН)** – Lead Financial Analyst. *(5-year financial model, LCOE, Pitch Deck)*
-* **[Andrew Berks](ССЫЛКА_НА_ЛИНКЕДИН)** – Quantitative & FinTech Analyst. *(Tokenomics Whitepaper, Algorithmic trading simulation)*
-* **[Ava Amelio](ССЫЛКА_НА_ЛИНКЕДИН)** – Political Science Researcher. *(Large-scale production viability analysis considering political changes and energy policies)*
+* **[Simon Rakhlin](https://www.linkedin.com/in/simon-rakhlin/)** – Lead Financial Analyst. *(5-year financial model, LCOE, Pitch Deck)*
+* **[Andrey Berks](https://www.linkedin.com/in/andreyberks/)** – Quantitative & FinTech Analyst. *(Tokenomics Whitepaper, Algorithmic trading simulation)*
+* **[Ava Amelio](https://www.linkedin.com/in/ava-amelio-b2ab09357/)** – Political Science Researcher. *(Large-scale production viability analysis considering political changes and energy policies)*
 
 ## 🛒 Detailed Bill of Materials (BOM)
 The physical prototype was constructed using off-the-shelf components for a total cost of **~$424 USD**:
