@@ -1,15 +1,10 @@
-<div align="center">
-  <img src="uet-logo.png" alt="UET Logo" width="150"/>
-</div>
+<img src="uet-logo.png" align="right" width="140" alt="UET Logo"/>
 
 # Project "Helios" ☀️
-**An Intelligent Combined Heat & Power (CHP) Microgrid Based on a Stirling Engine Thermal Cascade**
+**An Intelligent Combined Heat & Power (CHP) Microgrid Based on a Stirling Engine Thermal Cascade**  
 **Developed by UET (University Engineering Team)**
 
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
-![Hardware](https://img.shields.io/badge/hardware-IoT-blue)
-![Data](https://img.shields.io/badge/data-Digital_Twin-orange)
-![FinTech](https://img.shields.io/badge/fintech-Green_Energy_Token-purple)
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen) ![Hardware](https://img.shields.io/badge/hardware-IoT-blue) ![Data](https://img.shields.io/badge/data-Digital_Twin-orange) ![FinTech](https://img.shields.io/badge/fintech-Green_Energy_Token-purple)
 
 ## 📖 Executive Summary
 Project **"Helios"** is a multidisciplinary engineering prototype designed to demonstrate a fully autonomous, instrumented Combined Heat and Power (CHP) microgrid. 
@@ -48,29 +43,29 @@ I take full responsibility for the mechanical miscalculations as Project Lead. I
 
 ## 🗂️ Repository Structure
 
-* `📁 hardware/` — Schematics, BOM, and physical integration photos.
-* `📁 software/` — Edge processing scripts and data acquisition (ESP32/RPi).
-* `📁 digital_twin_web/` — Web portal, 3D twin, Cloud deployment (CI/CD).
-* `📁 fintech_and_business/` — Financial models, Tokenomics whitepaper, Pitch deck.
-* `📁 docs/` — Deep-dive engineering and architectural analysis.
+* **[📁 hardware/](./hardware/)** — Schematics, BOM, and physical integration photos.
+* **[📁 software/](./software/)** — Edge processing scripts and data acquisition (ESP32/RPi).
+* **[📁 digital_twin_web/](./digital_twin_web/)** — Web portal, 3D twin, Cloud deployment (CI/CD).
+* **[📁 fintech_and_business/](./fintech_and_business/)** — Financial models, Tokenomics whitepaper, Pitch deck.
+* **[📁 docs/](./docs/)** — Deep-dive engineering and architectural analysis.
 
 ## 👥 The Team (UET - University Engineering Team)
 This project was brought to life by a cross-functional, international team spanning the USA and Poland:
 
 **Core Leadership & Engineering Division (Washington, D.C.)**
-* **Mykyta Skyba** – Project Lead, Lead Systems Architect & Integration Lead. *(Full integration of the system, thermodynamic analysis, and project vision)*
-* **David Matsievich** – Assistant Project Lead & MT Design Engineer. *(Assistant in project management, responsible for MT engine installation and structural design)*
+* **[Mykyta Skyba](ССЫЛКА_НА_ЛИНКЕДИН)** – Project Lead, Lead Systems Architect & Integration Lead. *(Full integration of the system, thermodynamic analysis, and project vision)*
+* **[David Matsievich](ССЫЛКА_НА_ЛИНКЕДИН)** – Assistant Project Lead & MT Design Engineer. *(Assistant in project management, responsible for MT engine installation and structural design)*
 
 **Digital Twin & Cloud Division (Poland)**
-* **Andrii Serdiuk** – IT Manager & DevOps Lead. *(Cloud infrastructure, CI/CD, deployment automation)*
-* **Marcel Marek** – AI Specialist. *(Digital Twin integration)*
-* **Szymon Pankiewicz** – Marketing & Designer. *(Visual identity, branding, UI/UX)*
-* **Michał Dąbrowski** – Quality Assurance (QA). *(Functional testing, platform quality, documentation)*
+* **[Andrii Serdiuk](ССЫЛКА_НА_ЛИНКЕДИН)** – IT Manager & DevOps Lead. *(Cloud infrastructure, CI/CD, deployment automation)*
+* **[Marcel Marek](ССЫЛКА_НА_ЛИНКЕДИН)** – AI Specialist. *(Digital Twin integration)*
+* **[Szymon Pankiewicz](ССЫЛКА_НА_ЛИНКЕДИН)** – Marketing & Designer. *(Visual identity, branding, UI/UX)*
+* **[Michał Dąbrowski](ССЫЛКА_НА_ЛИНКЕДИН)** – Quality Assurance (QA). *(Functional testing, platform quality, documentation)*
 
 **Finance, Market & Policy Analysis Division (Washington, D.C.)**
-* **Simon Rakhlin** – Lead Financial Analyst. *(5-year financial model, LCOE, Pitch Deck)*
-* **Andrew Berks** – Quantitative & FinTech Analyst. *(Tokenomics Whitepaper, Algorithmic trading simulation)*
-* **Ava Amelio** – Political Science Researcher. *(Large-scale production viability analysis considering political changes and energy policies)*
+* **[Simon Rakhlin](ССЫЛКА_НА_ЛИНКЕДИН)** – Lead Financial Analyst. *(5-year financial model, LCOE, Pitch Deck)*
+* **[Andrew Berks](ССЫЛКА_НА_ЛИНКЕДИН)** – Quantitative & FinTech Analyst. *(Tokenomics Whitepaper, Algorithmic trading simulation)*
+* **[Ava Amelio](ССЫЛКА_НА_ЛИНКЕДИН)** – Political Science Researcher. *(Large-scale production viability analysis considering political changes and energy policies)*
 
 ## 🛒 Detailed Bill of Materials (BOM)
 The physical prototype was constructed using off-the-shelf components for a total cost of **~$424 USD**:
@@ -101,6 +96,3 @@ The physical prototype was constructed using off-the-shelf components for a tota
 **Hardware/Misc (~$80)**
 * 3D Printer Filament (1kg PLA) - $19.99
 * Additional structural materials & wiring
-
-## 📄 License
-This project is licensed under the MIT License - see the `LICENSE` file for details.
