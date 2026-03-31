@@ -2,28 +2,28 @@
 **Project "Helios" — Combined Heat & Power (CHP) Microgrid**
 
 <div align="center">
+  <div align="center">
   <table>
     <tr>
-      <td align="center">
-        <img src="photo1.jpg" width="400" alt="Overall System"/>
-        <br><i>Fig 0.1: Full Helios System Setup</i>
-      </td>
-      <td align="center">
-        <img src="photo2.jpg" width="400" alt="HT Engine"/>
-        <br><i>Fig 0.2: HT Engine & Aluminum Block</i>
+      <!-- Главное фото на всю ширину (объединяем 2 колонки) -->
+      <td colspan="2" align="center">
+        <img src="photo1.jpg" width="800" alt="Full Helios System Setup"/>
+        <br><i>Fig 0.1: Full Helios System Setup (Prototype)</i>
       </td>
     </tr>
     <tr>
+      <!-- Два фото поменьше снизу -->
       <td align="center">
-        <img src="photo3.jpg" width="400" alt="Sensors & Wiring"/>
-        <br><i>Fig 0.3: ESP32 Sensor Hub & Wiring</i>
+        <img src="photo2.jpg" width="400" alt="HT Engine & Aluminum Block"/>
+        <br><i>Fig 0.2: HT Engine & Custom Aluminum Block</i>
       </td>
       <td align="center">
-        <video src="demo.mp4" width="400" controls="controls" muted="muted"></video>
-        <br><i>Fig 0.4: Live Operation (Video Demo)</i>
+        <img src="photo3.jpg" width="400" alt="Sensor Hub & Wiring"/>
+        <br><i>Fig 0.3: ESP32 Sensor Hub & Data Pipeline</i>
       </td>
     </tr>
   </table>
+</div>
 </div>
 
 ## 1. Introduction & The Philosophy of "Engineering Honesty"
