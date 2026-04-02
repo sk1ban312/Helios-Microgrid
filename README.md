@@ -46,11 +46,11 @@ I take full responsibility for the mechanical miscalculations as Project Lead. I
 
 ## 🗂️ Repository Structure
 
-* **[📁 hardware/](./hardware/)** — Schematics, BOM, and physical integration photos.
-* **[📁 software/](./software/)** — Edge processing scripts and data acquisition (ESP32/RPi).
-* **[📁 digital_twin_web/](./digital_twin_web/)** — Web portal, 3D twin, Cloud deployment (CI/CD).
-* **[📁 fintech_and_business/](./fintech_and_business/)** — Financial models, Tokenomics whitepaper, Pitch deck.
-* **[📁 docs/](./docs/)** — Deep-dive engineering and architectural analysis.
+* **[📁 hardware/](./hardware/)** — Schematics, BOM, wiring architecture, and physical integration photos.
+* **[📁 software_engineering/](./software_engineering/)** — Edge processing scripts, IoT data pipeline, and MCU firmware (Arduino/Raspberry Pi).
+* **[📁 software_website/](./software_website/)** — Web portal, live 3D Digital Twin, and Cloud deployment (CI/CD).
+* **[📁 fintech_and_business/](./fintech_and_business/)** — Financial models, LCOE analysis, Tokenomics whitepaper, and Pitch deck.
+* **[📁 docs/](./docs/)** — Deep-dive engineering analysis, thermodynamics, and physical bottleneck teardown.
 
 ## 👥 The Team ([UET - University Engineering Team](https://www.linkedin.com/in/uet-university-engineering-team-aa9005392))
 This project was brought to life by a cross-functional, international team spanning the USA and Poland:
