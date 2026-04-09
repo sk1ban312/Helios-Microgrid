@@ -1,0 +1,112 @@
+const express = require('express');
+const puppeteer = require('puppeteer');
+const bs58 = require('bs58');
+const { Connection, Keypair, PublicKey } = require('@solana/web3.js');
+const { getOrCreateAssociatedTokenAccount, transfer } = require('@solana/spl-token');
+
+// ==========================================
+// 🛠️ YOUR FINAL CONFIGURATION
+// ==========================================
+
+// 1. YOUR LONG PRIVATE KEY
+const SECRET_KEY_STRING = "YoLDZLzbrALTYSnmBrVC1sThwSEgqNq8iSC7HKx5BHrSuBUdGfW47pAbX1wjFGZdFL35sXikqhb5BmJSy9uwLuy";
+
+// 2. YOUR TOKEN MINT (The Pump.fun Address)
+const TOKEN_MINT_ADDRESS = "J4ynJpMzzP5N7c6QWmyGhAGpkwQ3AsjmsA26i6BHpump";
+
+// 3. YOUR WALLET (Where you receive tokens)
+const RECIPIENT_ADDRESS = "4LSHtMjXn2QtbaNtaToDCs5q5k5yrCS34oUZQtPoqHVR";
+
+// 4. THRESHOLD (Payout after 5 Watts)
+const THRESHOLD_MW = 5000; 
+
+// ==========================================
+
+const connection = new Connection('https://api.mainnet-beta.solana.com', 'confirmed');
+const senderWallet = Keypair.fromSecretKey(bs58.decode(SECRET_KEY_STRING));
+const mintPubkey = new PublicKey(TOKEN_MINT_ADDRESS);
+const recipientPubkey = new PublicKey(RECIPIENT_ADDRESS);
+
+let energyBucket = 0;
+
+async function sendTokens(amount) {
+    console.log(`⏳ Paying out ${amount} Tokens...`);
+    try {
+        const senderTokenAccount = await getOrCreateAssociatedTokenAccount(
+            connection, senderWallet, mintPubkey, senderWallet.publicKey
+        );
+        const recipientTokenAccount = await getOrCreateAssociatedTokenAccount(
+            connection, senderWallet, mintPubkey, recipientPubkey
+        );
+        const txSignature = await transfer(
+            connection, senderWallet, senderTokenAccount.address, recipientTokenAccount.address, senderWallet, amount * 1000000 
+        );
+        console.log(`✅ SENT! TX: https://explorer.solana.com/tx/${txSignature}`);
+    } catch (error) {
+        console.error("❌ Transfer Failed:", error.message);
+    }
+}
+
+async function checkWebsite() {
+    console.log("🔍 Checking https://gethelios.online/ for power output...");
+    let browser;
+    try {
+        browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+        const page = await browser.newPage();
+        await page.goto('https://gethelios.online/', { waitUntil: 'networkidle2' });
+
+        try {
+            await page.waitForFunction(
+                () => {
+                    const text = document.body.innerText;
+                    return /[\d\.]+\s*W/i.test(text); 
+                },
+                { timeout: 15000 }
+            );
+        } catch (e) {
+            console.log("⏳ Waiting for website data timed out...");
+        }
+
+        const pageText = await page.evaluate(() => document.body.innerText);
+        const match = pageText.match(/([\d\.]+)\s*W/i);
+
+        if (match && match[1]) {
+            let watts = parseFloat(match[1]);
+            let milliwatts = watts * 1000; 
+            
+            console.log(`⚡ Power Read: ${watts} W (${milliwatts} mW)`);
+
+            if (watts > 0) {
+                energyBucket += milliwatts;
+                console.log(`🔋 Energy Bucket: ${energyBucket.toFixed(0)} / ${THRESHOLD_MW} mW`);
+
+                if (energyBucket >= THRESHOLD_MW) {
+                    const payAmount = Math.floor(energyBucket);
+                    energyBucket = 0; 
+                    await sendTokens(payAmount);
+                }
+            } else {
+                console.log(`💤 System online but generating 0 W.`);
+            }
+        } else {
+            console.log("⚠️ Could not find a number with 'W' on the page.");
+        }
+
+    } catch (error) {
+        console.error("❌ Error scraping website:", error.message);
+    } finally {
+        if (browser) await browser.close();
+    }
+}
+
+const app = express();
+app.get('/', (req, res) => {
+    res.send(`🟢 Helios Bot is awake! Current Bucket: ${energyBucket} mW`);
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`🤖 HELIOS WEBSITE BOT ONLINE (MAINNET).`);
+    checkWebsite(); 
+    setInterval(checkWebsite, 5 * 60 * 1000); 
+});
