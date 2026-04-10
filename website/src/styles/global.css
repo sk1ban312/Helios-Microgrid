@@ -1,0 +1,134 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  overflow-x: hidden;
+  
+  -webkit-text-size-adjust: 100%;
+}
+
+html.nav-open,
+html.nav-open body {
+  overflow: hidden !important;
+  touch-action: none;
+}
+
+:root {
+  --bg-primary: #0a0e27;
+  --bg-secondary: #141b3d;
+  --bg-card: #1a2142;
+  --accent: #00d4ff;
+  --accent-secondary: #ff6b35;
+  --text-primary: #ffffff;
+  --text-secondary: #a0aec0;
+  --border: #2d3748;
+  --success: #48bb78;
+  --warning: #f6ad55;
+  --danger: #fc8181;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  
+  background-attachment: scroll;
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.6;
+  
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  
+  width: 100%;
+}
+
+.card {
+  background: var(--bg-card);
+  padding: 30px;
+  border-radius: 15px;
+  border: 1px solid var(--border);
+}
+
+.card-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero {
+  text-align: center;
+  padding: 40px 20px;
+  margin-bottom: 40px;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 15px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero p {
+  font-size: 20px;
+  color: var(--text-secondary);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.coming-soon {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.coming-soon h1 {
+  font-size: 64px;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.coming-soon p {
+  font-size: 24px;
+  color: var(--text-secondary);
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  margin-top: 50px;
+  border-top: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+}
